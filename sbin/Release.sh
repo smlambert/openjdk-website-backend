@@ -75,8 +75,13 @@ do
     echo "version:${FILE_VERSION} type: ${FILE_TYPE} arch:${FILE_ARCH} os:${FILE_OS} variant:${FILE_VARIANT} timestamp or version:${FILE_TS_OR_VERSION} timestamp:${TIMESTAMP} extension:${FILE_EXTENSION}";
   fi
 done
+if [ "$LinuxInstall" == "true" ] && [ "$RELEASE" == "true" ]; then
+    files=`ls $PWD/temurin*{.rpm,.deb} | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'`
+else
+    files=`ls $PWD/OpenJDK*{.tar.gz,.sha256.txt,.zip,.pkg,.msi,.json} | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'`
+fi
 
-files=`ls $PWD/OpenJDK*{.tar.gz,.sha256.txt,.zip,.pkg,.msi,.json} | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'`
+# files=`ls $PWD/OpenJDK*{.tar.gz,.sha256.txt,.zip,.pkg,.msi,.json} | sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'`
 
 echo "Release: $RELEASE"
 
