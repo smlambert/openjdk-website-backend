@@ -71,7 +71,7 @@ class UploadAdoptReleaseFiles {
         //     repoName = "${org}/open${version}-${vendor}-binaries"
         // }
 
-        repoName = "aqavit/linux-installers"
+        def repoName = "aqavit/linux-installers"
 
         return github.getRepository(repoName)
     }
