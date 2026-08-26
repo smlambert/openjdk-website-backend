@@ -1,5 +1,6 @@
 #!groovy
 
+// Created with the assistance of IBM Bob v2.0.3
 // Workaround to handle different versions of the Badge/Groovy Postbuild plugin.
 def appendSummaryText(summary, text) {
     try {
