@@ -49,18 +49,19 @@ for (const commit of commits) {
       link: `https://bugs.openjdk.org/browse/${commit.id}`,
       type: null,
       backportOf: null,
+      backportedBy: null,
     };
   } else if (releaseNote.type === 'Backport' && releaseNote.backportOf) {
     // For backport issues, use the master bug ID and link so that the release
     // notes refer to the canonical bug with a description rather than the
     // backport ticket which is usually empty.
     const canonicalId = releaseNote.backportOf;
-    const { type, backportOf, ...rest } = releaseNote;
     releaseNote = {
-      ...rest,
+      ...releaseNote,
       id: canonicalId,
       link: `https://bugs.openjdk.org/browse/${canonicalId}`,
       type: null,
+      backportOf: null,
       backportedBy: commit.id,
     };
   }
