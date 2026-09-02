@@ -56,14 +56,17 @@ for (const commit of commits) {
     // notes refer to the canonical bug with a description rather than the
     // backport ticket which is usually empty.
     const canonicalId = releaseNote.backportOf;
+    const backportIssueId = releaseNote.id;
     releaseNote = {
       ...releaseNote,
       id: canonicalId,
       link: `https://bugs.openjdk.org/browse/${canonicalId}`,
       type: null,
       backportOf: null,
-      backportedBy: commit.id,
+      backportedBy: backportIssueId,
     };
+  } else {
+    releaseNote = { ...releaseNote, backportedBy: null };
   }
 
   output.push(releaseNote);
